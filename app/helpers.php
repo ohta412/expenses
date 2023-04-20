@@ -6,8 +6,8 @@ if (!function_exists('get_method')) {
     {
         return [
             'cash' => '現金',
-            'bank' => '銀行',
             'credit_card' => 'クレジットカード',
+            'bank' => '銀行',
         ];
     }
 }
@@ -17,8 +17,8 @@ if (!function_exists('get_type')) {
     function get_type()
     {
         return [
-            'income' => '収入',
             'expense' => '支出',
+            'income' => '収入',
         ];
     }
 }

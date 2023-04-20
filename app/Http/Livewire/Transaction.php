@@ -218,4 +218,16 @@ class Transaction extends Component
         // 初期化
         $this->init();
     }
+
+    /**
+     *
+     * 削除
+     */
+    public function deleteTransaction($id)
+    {
+        TransactionModel::findOrFail($id)->delete();
+
+        // 初期化
+        $this->init();
+    }
 }
