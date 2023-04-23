@@ -26,7 +26,12 @@ class DatabaseSeeder extends Seeder
 
         DB::table('categories')->insert([
             ['name' => '食費'],
+            ['name' => '外食費'],
+            ['name' => '娯楽費'],
+            ['name' => '日用品費'],
+            ['name' => '育児費'],
             ['name' => '交通費'],
+            ['name' => '医療費'],
             ['name' => '家賃'],
             ['name' => '電気代'],
             ['name' => 'ガス代'],
