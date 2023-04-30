@@ -32,6 +32,8 @@ class Transaction extends Component
     public $type;
     public $amount = [];
     public $date;
+    public $start;
+    public $end;
 
     /**
      *
@@ -69,7 +71,16 @@ class Transaction extends Component
         $query = TransactionModel::query();
 
         // 年月で絞り込み
-        $query->whereYear('date', $this->this_month->format('Y'))->whereMonth('date', $this->this_month->format('m'));
+        if ($this->start || $this->end) {
+            if ($this->start) {
+                $query->where('date', '>=', $this->start);
+            }
+            if ($this->end) {
+                $query->where('date', '<=', $this->end);
+            }
+        } else {
+            $query->whereYear('date', $this->this_month->format('Y'))->whereMonth('date', $this->this_month->format('m'));
+        }
 
         // カテゴリ絞り込み
         $this->category_ids = array_filter($this->category_ids);
@@ -214,6 +225,8 @@ class Transaction extends Component
     {
         $this->category_ids = [];
         $this->word = '';
+        $this->start = '';
+        $this->end = '';
 
         // 初期化
         $this->init();

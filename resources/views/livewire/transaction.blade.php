@@ -14,7 +14,9 @@
     @endif
     <div class="text-set__item mt-2">
         <div>
-            <input class="form-set -mini" type="text" id="full-name" name="full-name" wire:model.blur="word" placeholder="検索ワード">
+            <input class="form-set js-datepicker" type="text" wire:model.defer="start"> ~ 
+            <input class="form-set js-datepicker" type="text" wire:model.defer="end">
+            <input class="form-set -mini ml-3" type="text" id="full-name" name="full-name" wire:model.blur="word" placeholder="検索ワード">
             <button class="btn -mini -blue ml-2" wire:click="search">検索</button>
             <button class="btn -mini ml-1" wire:click="resetWord">リセット</button>
         </div>
@@ -138,7 +140,7 @@
             </tr>
             <tr>
                 <th>日付</th>
-                <td><input class="form-set" type="text" wire:model.defer="date" id="js-datepicker"></td>
+                <td><input class="form-set js-datepicker" type="text" wire:model.defer="date"></td>
             </tr>
         </table>
     </div>
