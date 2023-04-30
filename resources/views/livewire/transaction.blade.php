@@ -16,7 +16,7 @@
         <div>
             <input class="form-set js-datepicker" type="text" wire:model.defer="start"> ~ 
             <input class="form-set js-datepicker" type="text" wire:model.defer="end">
-            <input class="form-set -mini ml-3" type="text" id="full-name" name="full-name" wire:model.blur="word" placeholder="検索ワード">
+            <input class="form-set -mini ml-3" type="text" id="full-name" name="full-name" wire:model.blur="word" placeholder="検索ワード" list="item_name">
             <button class="btn -mini -blue ml-2" wire:click="search">検索</button>
             <button class="btn -mini ml-1" wire:click="resetWord">リセット</button>
         </div>
@@ -117,7 +117,7 @@
                                 @if ($i === 0)
                                     <p class="text-set__label">商品名</p>
                                 @endif
-                                <input class="form-set -long" type="text" wire:model.defer="name.{{ $i }}">
+                                <input class="form-set -long" type="text" wire:model.defer="name.{{ $i }}" list="item_name">
                             </div>
                             <div class="text-set__item">
                                 @if ($i === 0)
@@ -147,4 +147,11 @@
     <div class="text-center mt-5">
         <button class="btn -blue" wire:click="addTransaction">登録する</button>
     </div>
+
+    {{-- datalist --}}
+    <datalist id="item_name">
+        @foreach ($datalist as $item)
+            <option value="{{$item->name}}"></option>
+        @endforeach
+    </datalist>
 </div>

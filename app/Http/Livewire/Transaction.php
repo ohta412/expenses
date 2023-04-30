@@ -107,7 +107,9 @@ class Transaction extends Component
      */
     public function render()
     {
-        return view('livewire.transaction');
+        $datalist = TransactionModel::select('name', TransactionModel::raw('count(*) as count'))->groupBy('name')->orderByDesc('count')->get();
+        
+        return view('livewire.transaction', compact('datalist'));
     }
 
     /**
