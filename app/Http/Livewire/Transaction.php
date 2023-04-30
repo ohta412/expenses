@@ -147,17 +147,21 @@ class Transaction extends Component
         // 登録
         if (!empty($this->name)) {
             for ($i = 0; $i < count($this->name); $i++) {
-                $name = $this->name[$i] ?? null;
+                $name_arr = explode('*', $this->name[$i]);
+                $name = $name_arr[0] ?? null;
+                $multiple = isset($name_arr[1]) ? (int)$name_arr[1] : 1;
                 $amount = $this->amount[$i] ?? null;
                 if ($name && $amount) {
-                    TransactionModel::insert([
-                        'name' => $name,
-                        'category_id' => $this->category_id ?? null,
-                        'method' => $this->method,
-                        'type' => $this->type,
-                        'amount' => $amount,
-                        'date' => $date,
-                    ]);
+                    for ($j = 1; $j <= $multiple; $j++) {
+                        TransactionModel::insert([
+                            'name' => $name,
+                            'category_id' => $this->category_id ?? null,
+                            'method' => $this->method,
+                            'type' => $this->type,
+                            'amount' => $amount,
+                            'date' => $date,
+                        ]);
+                    }
                 }
             }
         }
